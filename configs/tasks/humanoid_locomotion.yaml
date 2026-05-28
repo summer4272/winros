@@ -1,0 +1,48 @@
+id: humanoid_locomotion
+title: Humanoid locomotion
+robot_family: humanoid
+primary_robot: Unitree G1
+primary_asset: unitree_g1_menagerie
+reference_assets:
+  - unitree_h1_menagerie
+  - unitree_mujoco_official
+  - mujoco_playground_reference
+initial_goal: Stand, recover balance, then track commanded walking velocity.
+simulation:
+  engine: mujoco
+  observation_groups:
+    - base_imu
+    - joint_state
+    - foot_contact
+    - command_velocity
+    - phase_signal
+  action_space: normalized_joint_position_targets
+  reset_curriculum:
+    - fixed standing pose
+    - balance with small pushes
+    - slow forward walking
+    - turning and rough terrain
+policy_design:
+  baseline: PPO with symmetry and alive rewards
+  innovation_hooks:
+    - staged stand-to-walk curriculum
+    - recovery skill selector
+    - deployment-safe action smoothing and fall prediction
+ros2_interface:
+  commands:
+    - winros_interfaces/msg/JointCommand
+  telemetry:
+    - winros_interfaces/msg/RobotTelemetry
+  future_hardware_adapter: Unitree G1/H1 low-level DDS adapter
+safety_gates:
+  - dry_run_only_by_default
+  - joint_and_torque_limit_check
+  - fall_detection
+  - action_rate_limit
+  - hardware_e_stop_required
+milestones:
+  - Load G1 MJCF and verify standing pose stability.
+  - Build balance-only environment.
+  - Train standing and recovery baseline.
+  - Extend to commanded walking.
+  - Add low-level hardware adapter only after read-only telemetry works.

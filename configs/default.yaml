@@ -1,0 +1,20 @@
+project:
+  name: winros
+  mode: local
+
+runtime:
+  ros_distro: jazzy
+  simulator: mujoco
+  default_robot: two_link_arm
+  dry_run: true
+
+learning:
+  device: auto
+  low_vram: true
+  rollout_steps: 512
+  batch_size: 64
+
+telemetry:
+  publish_hz: 30
+  log_dir: runs
+

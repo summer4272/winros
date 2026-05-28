@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-28T14:46:37+08:00",
+  "project": "WinROS",
+  "source_workspace": "D:\\winros",
+  "purpose": "GitHub first-screen demo showing Windows-first ROS 2, MuJoCo, RL inference, VLA dry-run, and real-robot interface direction.",
+  "showcase": {
+    "asset": "docs/assets/demo/winros_showcase.webm",
+    "bytes": 11759644,
+    "fps": 30.0,
+    "duration_seconds": 8.0,
+    "frames": 240,
+    "resolution": "1920x1080",
+    "poster": "docs/assets/demo/winros_showcase_poster.jpg",
+    "poster_bytes": 282363,
+    "build_command": "python .\\scripts\\build_showcase_demo.py"
+  },
+  "clips": [
+    {
+      "id": "g1_fast_run",
+      "title_zh": "人形机器人快跑",
+      "robot": "Unitree G1",
+      "task": "Unitree-G1-FastRunV1",
+      "asset": "docs/assets/demo/g1_fast_run.mp4",
+      "duration_seconds": 4.8,
+      "record_command": "python .\\scripts\\record_unitree_mjlab_demo.py --profile g1_fast_run --steps 240",
+      "checkpoint": "D:\\winros\\third_party\\unitree_rl_mjlab\\logs\\rsl_rl\\g1_velocity\\2026-05-27_20-30-43_unitree_g1_fast_run_v1_20260527_203014\\model_22998.pt",
+      "status": "validated",
+      "subtitle_zh": "G1 已训练权重推理预览",
+      "metric_zh": "人形运动控制",
+      "bytes": 748863,
+      "fps": 50.0,
+      "frames": 240,
+      "resolution": "960x540"
+    },
+    {
+      "id": "go2_fast_run",
+      "title_zh": "机器狗快跑",
+      "robot": "Unitree Go2",
+      "task": "Unitree-Go2-FastFlat",
+      "asset": "docs/assets/demo/go2_fast_run.mp4",
+      "duration_seconds": 4.8,
+      "record_command": "python .\\scripts\\record_unitree_mjlab_demo.py --profile go2_fast_run --steps 240",
+      "checkpoint": "D:\\winros\\third_party\\unitree_rl_mjlab\\logs\\rsl_rl\\go2_velocity\\2026-05-27_00-46-23_unitree_go2_fast_flat_20260527_004601\\model_11999.pt",
+      "status": "validated",
+      "subtitle_zh": "Go2 已训练权重推理预览",
+      "metric_zh": "四足速度跟踪",
+      "bytes": 961632,
+      "fps": 50.0,
+      "frames": 240,
+      "resolution": "960x540"
+    },
+    {
+      "id": "go2_stairs",
+      "title_zh": "机器狗上楼梯",
+      "robot": "Unitree Go2",
+      "task": "Unitree-Go2-StairsForwardV3",
+      "asset": "docs/assets/demo/go2_stairs.mp4",
+      "duration_seconds": 4.8,
+      "record_command": "python .\\scripts\\record_unitree_mjlab_demo.py --profile go2_stairs --steps 240",
+      "checkpoint": "D:\\winros\\third_party\\unitree_rl_mjlab\\logs\\rsl_rl\\go2_velocity\\2026-05-28_01-36-34_unitree_go2_stairs_forward_v3_20260528_013607\\model_8999.pt",
+      "status": "validated",
+      "subtitle_zh": "Go2 楼梯课程学习结果",
+      "metric_zh": "楼梯地形泛化",
+      "bytes": 916306,
+      "fps": 50.0,
+      "frames": 240,
+      "resolution": "960x540"
+    }
+  ],
+  "verification": {
+    "browser_playback": "4 videos loaded and played in docs/demo/index.html",
+    "mobile_layout": "checked at 390x844 without horizontal overflow",
+    "python_tests": "python -m pytest"
+  }
+}

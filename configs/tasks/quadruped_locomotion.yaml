@@ -1,0 +1,46 @@
+id: quadruped_locomotion
+title: Quadruped locomotion
+robot_family: quadruped
+primary_robot: Unitree Go2
+primary_asset: unitree_go2_menagerie
+reference_assets:
+  - unitree_mujoco_official
+  - mujoco_playground_reference
+initial_goal: Track commanded planar velocity on flat ground, then rough terrain.
+simulation:
+  engine: mujoco
+  observation_groups:
+    - base_imu
+    - joint_state
+    - foot_contact
+    - command_velocity
+  action_space: normalized_joint_position_targets
+  reset_curriculum:
+    - standing pose
+    - low-speed forward velocity
+    - yaw command
+    - rough terrain and perturbations
+policy_design:
+  baseline: PPO with domain randomization
+  innovation_hooks:
+    - command-conditioned gait library
+    - terrain-aware reward shaping
+    - hardware-aware latency and motor strength randomization
+ros2_interface:
+  commands:
+    - winros_interfaces/msg/JointCommand
+  telemetry:
+    - winros_interfaces/msg/RobotTelemetry
+  future_hardware_adapter: Unitree low-level DDS adapter
+safety_gates:
+  - dry_run_only_by_default
+  - torque_and_position_limit_check
+  - fall_detection
+  - command_timeout_to_stand_or_damping
+  - separate_sim_dds_domain
+milestones:
+  - Load Go2 MJCF and verify joint naming.
+  - Build flat-ground velocity tracking environment.
+  - Train PPO baseline with short rollouts.
+  - Add terrain curriculum and perturbations.
+  - Map policy output to Unitree low-level command schema in dry-run mode.

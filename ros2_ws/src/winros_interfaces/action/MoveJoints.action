@@ -1,0 +1,13 @@
+string robot_name
+string[] joint_names
+float64[] positions
+float64 max_velocity
+float64 max_acceleration
+bool dry_run
+---
+bool success
+string message
+---
+float64 progress
+float64[] current_positions
+

@@ -1,0 +1,7 @@
+string robot_name
+string mode
+bool enable_hardware
+---
+bool accepted
+string message
+

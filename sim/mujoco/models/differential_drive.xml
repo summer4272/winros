@@ -1,0 +1,36 @@
+<mujoco model="winros_differential_drive">
+  <compiler angle="degree"/>
+  <option timestep="0.002" gravity="0 0 -9.81"/>
+
+  <default>
+    <joint damping="0.05"/>
+    <geom friction="1.0 0.1 0.1" density="400"/>
+  </default>
+
+  <worldbody>
+    <light name="key" pos="0 -3 3" dir="0 1 -1"/>
+    <geom name="floor" type="plane" size="3 3 0.05" rgba="0.82 0.84 0.86 1"/>
+
+    <body name="base" pos="0 0 0.16">
+      <freejoint name="base_free"/>
+      <geom name="chassis" type="box" size="0.22 0.16 0.06" rgba="0.15 0.2 0.28 1"/>
+      <geom name="front_marker" type="box" pos="0.2 0 0.04" size="0.025 0.12 0.015" rgba="0.95 0.65 0.2 1"/>
+
+      <body name="left_wheel_body" pos="0 0.18 -0.06">
+        <joint name="left_wheel" type="hinge" axis="0 1 0"/>
+        <geom name="left_wheel_geom" type="cylinder" size="0.06 0.025" euler="90 0 0" rgba="0.05 0.05 0.06 1"/>
+      </body>
+
+      <body name="right_wheel_body" pos="0 -0.18 -0.06">
+        <joint name="right_wheel" type="hinge" axis="0 1 0"/>
+        <geom name="right_wheel_geom" type="cylinder" size="0.06 0.025" euler="90 0 0" rgba="0.05 0.05 0.06 1"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="left_wheel_motor" joint="left_wheel" gear="8" ctrlrange="-1 1"/>
+    <motor name="right_wheel_motor" joint="right_wheel" gear="8" ctrlrange="-1 1"/>
+  </actuator>
+</mujoco>
+

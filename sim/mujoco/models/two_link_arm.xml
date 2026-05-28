@@ -1,0 +1,37 @@
+<mujoco model="winros_two_link_arm">
+  <compiler angle="degree" coordinate="local"/>
+  <option timestep="0.002" gravity="0 0 -9.81"/>
+
+  <default>
+    <joint damping="0.2" armature="0.01"/>
+    <geom density="500" friction="0.8 0.1 0.1"/>
+  </default>
+
+  <worldbody>
+    <light name="key" pos="0 -3 3" dir="0 1 -1"/>
+    <geom name="floor" type="plane" size="2 2 0.05" rgba="0.82 0.84 0.86 1"/>
+
+    <body name="base" pos="0 0 0.05">
+      <geom name="base_geom" type="cylinder" size="0.08 0.05" rgba="0.2 0.25 0.3 1"/>
+
+      <body name="link1" pos="0 0 0.08">
+        <joint name="shoulder" type="hinge" axis="0 0 1" limited="true" range="-120 120"/>
+        <geom name="link1_geom" type="capsule" fromto="0 0 0 0.35 0 0" size="0.03" rgba="0.1 0.45 0.8 1"/>
+
+        <body name="link2" pos="0.35 0 0">
+          <joint name="elbow" type="hinge" axis="0 0 1" limited="true" range="-135 135"/>
+          <geom name="link2_geom" type="capsule" fromto="0 0 0 0.28 0 0" size="0.025" rgba="0.1 0.7 0.5 1"/>
+          <body name="tool" pos="0.28 0 0">
+            <geom name="tool_geom" type="sphere" size="0.035" rgba="0.95 0.65 0.2 1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="shoulder_motor" joint="shoulder" gear="40" ctrlrange="-1 1"/>
+    <motor name="elbow_motor" joint="elbow" gear="30" ctrlrange="-1 1"/>
+  </actuator>
+</mujoco>
+

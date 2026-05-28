@@ -1,0 +1,15 @@
+name: differential_drive
+kind: wheeled
+model: sim/mujoco/models/differential_drive.xml
+joints:
+  - left_wheel
+  - right_wheel
+limits:
+  left_wheel:
+    velocity: 8.0
+  right_wheel:
+    velocity: 8.0
+control:
+  default_mode: velocity
+  dry_run: true
+

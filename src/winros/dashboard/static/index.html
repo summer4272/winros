@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WinROS Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">W</div>
+          <div>
+            <strong>WinROS</strong>
+            <span id="versionText">loading</span>
+          </div>
+        </div>
+        <nav id="groupNav" class="group-nav" aria-label="Profile groups"></nav>
+        <div class="safety-panel">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Dry-run first</strong>
+            <span>Hardware path locked</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Local robotics workbench</p>
+            <h1>Operator Console</h1>
+          </div>
+          <div class="top-actions">
+            <button id="refreshBtn" class="icon-button" title="Refresh" type="button">R</button>
+            <button id="settingsBtn" class="icon-button" title="Settings" type="button">S</button>
+          </div>
+        </header>
+
+        <section id="overview" class="overview-grid" aria-label="Project overview"></section>
+
+        <section class="split">
+          <div>
+            <div class="section-head">
+              <h2 id="profileHeading">Profiles</h2>
+              <span id="profileCount"></span>
+            </div>
+            <div id="profiles" class="profile-grid"></div>
+          </div>
+
+          <aside class="console-panel">
+            <div class="section-head">
+              <h2>Runs</h2>
+              <button id="pollBtn" class="text-button" type="button">Poll</button>
+            </div>
+            <div id="commandPreview" class="command-preview"></div>
+            <div id="runs" class="runs-list"></div>
+            <pre id="logTail" class="log-tail"></pre>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="settingsDialog" class="settings-dialog">
+      <form method="dialog">
+        <div class="dialog-head">
+          <h2>Dashboard</h2>
+          <button class="icon-button" title="Close" value="close" type="submit">X</button>
+        </div>
+        <label class="field-row">
+          <span>Accent</span>
+          <input id="accentInput" type="color" value="#2f9e8f" />
+        </label>
+        <label class="field-row">
+          <span>Density</span>
+          <select id="densityInput">
+            <option value="comfortable">Comfortable</option>
+            <option value="compact">Compact</option>
+          </select>
+        </label>
+        <label class="toggle-row">
+          <input id="researchInput" type="checkbox" />
+          <span>Research runs</span>
+        </label>
+        <menu class="dialog-actions">
+          <button id="saveSettingsBtn" class="primary-button" value="close" type="button">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

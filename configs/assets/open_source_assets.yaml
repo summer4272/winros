@@ -1,0 +1,84 @@
+assets:
+  - name: franka_panda_menagerie
+    track: arm_grasp
+    kind: mujoco_model
+    robot: Franka Emika Panda
+    source: MuJoCo Menagerie
+    repo_url: https://github.com/google-deepmind/mujoco_menagerie.git
+    local_repo: third_party/mujoco_menagerie
+    model_path: franka_emika_panda/scene.xml
+    license: Apache-2.0
+    priority: primary
+    notes: Primary arm model for grasping and pick-place task construction.
+
+  - name: panda_mujoco_gym_reference
+    track: arm_grasp
+    kind: gymnasium_env_reference
+    robot: Franka Emika Panda
+    source: panda_mujoco_gym
+    repo_url: https://github.com/zichunxx/panda_mujoco_gym.git
+    local_repo: third_party/panda_mujoco_gym
+    model_path: ""
+    license: MIT
+    priority: reference
+    notes: Reference implementation for push, slide, and pick-and-place tasks.
+
+  - name: unitree_go2_menagerie
+    track: quadruped_locomotion
+    kind: mujoco_model
+    robot: Unitree Go2
+    source: MuJoCo Menagerie
+    repo_url: https://github.com/google-deepmind/mujoco_menagerie.git
+    local_repo: third_party/mujoco_menagerie
+    model_path: unitree_go2/scene.xml
+    license: BSD-3-Clause
+    priority: primary
+    notes: Primary quadruped model for velocity tracking and terrain curriculum.
+
+  - name: unitree_mujoco_official
+    track: quadruped_locomotion
+    kind: sim2real_reference
+    robot: Unitree Go2, H1, G1
+    source: Unitree MuJoCo
+    repo_url: https://github.com/unitreerobotics/unitree_mujoco.git
+    local_repo: third_party/unitree_mujoco
+    model_path: unitree_robots/go2/scene.xml
+    license: BSD-3-Clause
+    priority: reference
+    notes: Low-level DDS and simulator reference for eventual Unitree hardware deployment.
+
+  - name: unitree_g1_menagerie
+    track: humanoid_locomotion
+    kind: mujoco_model
+    robot: Unitree G1
+    source: MuJoCo Menagerie
+    repo_url: https://github.com/google-deepmind/mujoco_menagerie.git
+    local_repo: third_party/mujoco_menagerie
+    model_path: unitree_g1/scene.xml
+    license: BSD-3-Clause
+    priority: primary
+    notes: Primary humanoid model for standing, balance, and commanded walking.
+
+  - name: unitree_h1_menagerie
+    track: humanoid_locomotion
+    kind: mujoco_model
+    robot: Unitree H1
+    source: MuJoCo Menagerie
+    repo_url: https://github.com/google-deepmind/mujoco_menagerie.git
+    local_repo: third_party/mujoco_menagerie
+    model_path: unitree_h1/scene.xml
+    license: BSD-3-Clause
+    priority: fallback
+    notes: Secondary humanoid model if G1-specific controllers or assets need comparison.
+
+  - name: mujoco_playground_reference
+    track: all
+    kind: training_framework_reference
+    robot: Multiple
+    source: MuJoCo Playground
+    repo_url: https://github.com/google-deepmind/mujoco_playground.git
+    local_repo: third_party/mujoco_playground
+    model_path: ""
+    license: Apache-2.0
+    priority: reference
+    notes: Reference for GPU-accelerated RL task structure and sim-to-real practices.

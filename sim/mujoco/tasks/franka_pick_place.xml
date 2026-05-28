@@ -1,0 +1,40 @@
+<mujoco model="winros franka pick place">
+  <include file="../../../third_party/mujoco_menagerie/franka_emika_panda/panda.xml"/>
+
+  <statistic center="0.45 0 0.45" extent="1.2"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="130" elevation="-25"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.22 0.28 0.32" rgb2="0.12 0.16 0.18"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    <material name="table_mat" rgba="0.45 0.45 0.42 1"/>
+    <material name="cube_mat" rgba="0.1 0.45 0.85 1"/>
+    <material name="target_mat" rgba="0.2 0.9 0.35 0.35"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1.8" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+
+    <body name="table" pos="0.55 0 0.2">
+      <geom name="table_top" type="box" size="0.35 0.35 0.025" material="table_mat"/>
+    </body>
+
+    <body name="object_cube" pos="0.48 0.0 0.255">
+      <freejoint name="object_cube_joint"/>
+      <geom name="object_cube_geom" type="box" size="0.025 0.025 0.025" mass="0.05" material="cube_mat"
+        condim="4" friction="1.0 0.005 0.0001"/>
+    </body>
+
+    <body name="target" pos="0.62 0.12 0.285">
+      <geom name="target_marker" type="sphere" size="0.035" material="target_mat" contype="0" conaffinity="0"/>
+    </body>
+  </worldbody>
+</mujoco>

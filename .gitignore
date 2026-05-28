@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+.conda/
+.pixi/
+.tools/
+*.egg
+
+# ROS 2 / colcon
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+build/
+dist/
+install/
+log/
+
+# Local artifacts
+runs/
+outputs/
+checkpoints/
+datasets/
+third_party/
+docs/assets/demo/_recordings/
+*.bag/
+*.db3
+*.mcap
+
+# Editors / OS
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+
+# Secrets and machine-local configuration
+.env
+*.local.yaml
+configs/secrets/

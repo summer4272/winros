@@ -1,0 +1,46 @@
+id: arm_grasp
+title: Mechanical arm grasping
+robot_family: arm
+primary_robot: Franka Emika Panda
+primary_asset: franka_panda_menagerie
+reference_assets:
+  - panda_mujoco_gym_reference
+initial_goal: Pick up a cube from a tabletop and place it at a commanded target pose.
+simulation:
+  engine: mujoco
+  observation_groups:
+    - joint_state
+    - end_effector_pose
+    - object_pose
+    - goal_pose
+  action_space: normalized_joint_delta_or_end_effector_delta
+  reset_curriculum:
+    - fixed cube pose
+    - randomized cube pose
+    - randomized target pose
+    - distractor objects
+policy_design:
+  baseline: HER + SAC or TQC for sparse/dense reward comparison
+  innovation_hooks:
+    - skill-conditioned grasp stage and place stage
+    - visual/VLA goal encoder behind an optional provider interface
+    - sim-to-real residual safety filter before command publish
+ros2_interface:
+  commands:
+    - winros_interfaces/msg/JointCommand
+    - winros_interfaces/action/MoveJoints
+  telemetry:
+    - winros_interfaces/msg/RobotTelemetry
+  future_hardware_adapter: winros_robot_adapters arm vendor adapter
+safety_gates:
+  - dry_run_only_by_default
+  - joint_limit_check
+  - velocity_limit_check
+  - workspace_bounds_check
+  - gripper_force_limit
+milestones:
+  - Load Panda MJCF and publish joint_states through the MuJoCo bridge.
+  - Build a Gymnasium pick-place environment using the shared WinROS task API.
+  - Train a small off-policy baseline on local GPU/CPU.
+  - Export policy inference behind a ROS2 command node.
+  - Add read-only hardware telemetry adapter before enabling commands.

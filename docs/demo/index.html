@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WinROS 平台演示</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="demo-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="brand-row">
+            <span class="brand-mark">W</span>
+            <span>WinROS</span>
+          </div>
+          <p class="eyebrow">Windows 原生 ROS 2 + MuJoCo + 强化学习平台</p>
+          <h1>在一个界面里预览训练好的机器人策略</h1>
+          <p class="lead">
+            面向初学者和个人开发者：本地配置、仿真预览、RL 权重推理、VLA 接口和真机 dry-run
+            安全门控放在同一个工作台里。
+          </p>
+          <div class="actions">
+            <a class="primary" href="../assets/demo/winros_showcase.webm">播放展示视频</a>
+            <a class="secondary" href="../../README.md">返回项目 README</a>
+          </div>
+          <div class="status-strip">
+            <span>ROS 2</span>
+            <span>MuJoCo</span>
+            <span>RL 推理</span>
+            <span>VLA 预留</span>
+            <span>真机接口</span>
+          </div>
+        </div>
+
+        <div class="showcase-panel">
+          <video
+            src="../assets/demo/winros_showcase.webm"
+            poster="../assets/demo/winros_showcase_poster.jpg"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+          ></video>
+        </div>
+      </section>
+
+      <section class="preview-grid" aria-label="训练结果预览">
+        <article class="preview-card">
+          <div>
+            <p class="card-kicker">G1 / 已训练权重</p>
+            <h2>人形机器人快跑</h2>
+          </div>
+          <video src="../assets/demo/g1_fast_run.mp4" autoplay muted loop playsinline controls></video>
+        </article>
+
+        <article class="preview-card">
+          <div>
+            <p class="card-kicker">Go2 / 已训练权重</p>
+            <h2>机器狗快跑</h2>
+          </div>
+          <video src="../assets/demo/go2_fast_run.mp4" autoplay muted loop playsinline controls></video>
+        </article>
+
+        <article class="preview-card">
+          <div>
+            <p class="card-kicker">Go2 / 楼梯课程</p>
+            <h2>机器狗上楼梯</h2>
+          </div>
+          <video src="../assets/demo/go2_stairs.mp4" autoplay muted loop playsinline controls></video>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

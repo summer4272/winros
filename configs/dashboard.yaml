@@ -1,0 +1,23 @@
+theme:
+  accent: "#2f9e8f"
+  density: comfortable
+  language: en
+
+layout:
+  left_nav:
+    - Setup
+    - Simulation
+    - Learning
+    - VLA
+    - ROS 2
+    - Real Robot
+    - Research Runs
+
+preferences:
+  default_profile: sim_builtin
+  show_research_runs: true
+  hardware_mode_enabled: false
+
+# Add local-only profiles in configs/dashboard.local.yaml.
+# That file is ignored by Git because it may contain lab-specific commands.
+custom_profiles: []

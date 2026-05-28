@@ -1,0 +1,17 @@
+name: two_link_arm
+kind: arm
+model: sim/mujoco/models/two_link_arm.xml
+joints:
+  - shoulder
+  - elbow
+limits:
+  shoulder:
+    position: [-2.09, 2.09]
+    velocity: 1.5
+  elbow:
+    position: [-2.36, 2.36]
+    velocity: 1.5
+control:
+  default_mode: position
+  dry_run: true
+
