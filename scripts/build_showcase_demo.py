@@ -249,6 +249,16 @@ def video_metadata(path: Path) -> dict[str, int | float | str]:
     return metadata
 
 
+def public_checkpoint_label(value: str | None) -> str | None:
+    if not value:
+        return None
+    normalized = value.replace("\\", "/")
+    marker = "unitree_rl_mjlab/logs/rsl_rl/"
+    if marker in normalized:
+        return normalized.split(marker, 1)[1]
+    return normalized
+
+
 def write_manifest() -> None:
     previous: dict = {}
     if OUTPUT_MANIFEST.exists():
@@ -275,6 +285,9 @@ def write_manifest() -> None:
             ),
             "status": old.get("status", "generated"),
         }
+        checkpoint = public_checkpoint_label(old.get("checkpoint"))
+        if checkpoint:
+            item["checkpoint"] = checkpoint
         item.update(video_metadata(clip.path))
         clips.append(item)
 
@@ -282,7 +295,7 @@ def write_manifest() -> None:
         "schema_version": previous.get("schema_version", 1),
         "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
         "project": previous.get("project", "WinROS"),
-        "source_workspace": previous.get("source_workspace", "D:\\winros"),
+        "source_workspace": "external Unitree MJLab workspace, not distributed",
         "purpose": previous.get(
             "purpose",
             "GitHub first-screen demo for the Windows-first robotics learning platform.",

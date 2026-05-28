@@ -8,7 +8,7 @@
 - `docs/assets/demo/go2_fast_run.mp4`：机器狗快跑；
 - `docs/assets/demo/go2_stairs.mp4`：机器狗上楼梯；
 - `docs/demo/index.html`：中文静态展示页。
-- `docs/assets/demo/manifest.json`：机器可读 demo 元数据，记录视频、checkpoint 和验证状态。
+- `docs/assets/demo/manifest.json`：机器可读 demo 元数据，记录视频、公开运行标识和验证状态。
 
 重新生成展示视频：
 
@@ -25,10 +25,10 @@ python .\scripts\build_showcase_demo.py
 python -m json.tool .\docs\assets\demo\manifest.json
 ```
 
-并更新 `docs/VALIDATION.md` 中的 checkpoint 和验证说明。
+并更新 `docs/VALIDATION.md` 中的公开运行标识和验证说明。
 
-当前录制使用的最新本地 checkpoint：
+当前公开记录的训练运行标识：
 
-- G1 快跑：`g1_velocity/...unitree_g1_fast_run_v1.../model_22998.pt`
-- Go2 快跑：`go2_velocity/...unitree_go2_fast_flat.../model_11999.pt`
-- Go2 上楼梯：`go2_velocity/...unitree_go2_stairs_forward_v3.../model_8999.pt`
+- G1 快跑：`g1_velocity/2026-05-27_20-30-43_unitree_g1_fast_run_v1_20260527_203014/model_22998.pt`
+- Go2 快跑：`go2_velocity/2026-05-27_00-46-23_unitree_go2_fast_flat_20260527_004601/model_11999.pt`
+- Go2 上楼梯：`go2_velocity/2026-05-28_01-36-34_unitree_go2_stairs_forward_v3_20260528_013607/model_8999.pt`

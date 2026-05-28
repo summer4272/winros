@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_REPO = Path("D:/winros/third_party/unitree_rl_mjlab")
+DEFAULT_REPO = ROOT / "third_party" / "unitree_rl_mjlab"
 DEFAULT_OUTPUT_DIR = ROOT / "docs" / "assets" / "demo"
 
 

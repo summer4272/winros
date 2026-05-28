@@ -3,7 +3,7 @@
 WinROS 的目标是让初学者可以在 Windows 上先跑通 ROS 2、MuJoCo、强化学习仿真和
 dry-run 真机接口，再逐步接入 VLA、数据采集和真实机器人。
 
-如果你是第一次打开这个项目，建议先看：
+首次使用建议先看：
 
 - [为什么做 WinROS](WHY_WINROS.md)
 - [初学者路线](BEGINNER_PATH.md)

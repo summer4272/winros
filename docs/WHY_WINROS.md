@@ -1,66 +1,50 @@
-# 为什么做 WinROS
+# Project Motivation
 
-WinROS 不是想替代 Linux 机器人开发环境，而是想把“第一步”变得更轻。
+WinROS is a Windows-first robotics learning platform. It is intended to provide
+a practical entry point for users who want to experiment with ROS 2, MuJoCo,
+reinforcement learning, VLA-style command generation, and hardware-adapter
+interfaces without starting from a full Linux workstation setup.
 
-对很多刚接触机器人、强化学习和 ROS 2 的人来说，最难的部分不是算法本身，而是把
-Windows、显卡、仿真器、Python、ROS 2、训练脚本和真机安全边界一起搭起来。这个门槛
-会让很多有兴趣的人在看到机器人动起来之前就停下。
+The project does not replace Linux-based robotics development. Instead, it
+offers a smaller first step: run local simulations, inspect trained-policy
+previews, test structured command interfaces, and build ROS 2 packages from a
+single repository.
 
-WinROS 的开源价值，是提供一条先能跑、再能改、最后能接真机的路径。
+## Design Goals
 
-## 目标用户
+| Goal | Implementation direction |
+| --- | --- |
+| Lower first-run friction | Windows setup scripts, local dashboard, and small simulation tasks |
+| Keep robot-learning workflows connected | Shared configuration for CLI, dashboard, simulation, RL, VLA, and ROS 2 |
+| Make demos reproducible | Recording scripts, demo manifest, validation notes, and release checks |
+| Keep hardware work safe | Dry-run-first adapters, command validation, telemetry, and explicit hardware gates |
+| Keep the public repository clean | No private checkpoints, SDKs, datasets, credentials, or calibration files |
 
-| 用户 | 他们需要什么 | WinROS 给什么 |
-| --- | --- | --- |
-| 初学者 | 不想一开始就被 Linux、VM、ROS 2 workspace 卡住 | Windows dashboard、中文快速开始、最小仿真 |
-| 个人爱好者 | 没有完整实验室环境，也想看机器人策略跑起来 | MuJoCo、RL demo、可复现录制脚本 |
-| 研究者 | 想把 VLA、RL、数据采集和机器人接口接到同一条链路 | VLA provider、ROS 2 messages、adapter skeleton |
-| 真机开发者 | 需要可控、安全、可替换的硬件入口 | dry-run 默认、命令校验、遥测和安全门控 |
+## Current Evidence
 
-## 它解决的不是一个单点问题
+The repository currently includes:
 
-WinROS 关注的是机器人学习项目常见的“断裂点”：
+- a local dashboard for environment checks, simulations, RL profiles, VLA
+  dry-run, and ROS 2 build profiles;
+- trained-policy demo previews for Unitree G1 and Unitree Go2 locomotion tasks;
+- scripts for recording and rebuilding the public demo assets;
+- ROS 2 interface, MuJoCo bridge, and robot-adapter package skeletons;
+- a VLA provider interface that returns structured robot commands;
+- a lightweight test suite for registry, configuration, and public interfaces.
 
-- 仿真能跑，但 ROS 2 消息和真机接口不在同一套结构里；
-- 训练结果有视频，但别人不知道如何复现、如何替换权重；
-- VLA 输出很有想象力，但没有结构化命令和安全校验；
-- 真机接口很诱人，但初学者很容易绕过安全边界；
-- 开源仓库有代码，但缺少新手路径和贡献入口。
+## Non-Goals
 
-这个项目把这些点放在一个 Windows-first 的平台里，让学习者能从 dashboard 进入，而不是
-从一堆分散脚本里猜下一步。
+- Distributing private training checkpoints.
+- Shipping vendor SDKs or private robot configuration.
+- Enabling real hardware control by default.
+- Guaranteeing that all research demos can be retrained on low-end hardware.
+- Presenting Windows as a replacement for production Linux robot stacks.
 
-## 现在的证据链
+## Intended Contribution Areas
 
-WinROS 当前不是只写了愿景，仓库里已经包含：
-
-- 中文图形化 dashboard，用同一份配置管理仿真、RL、VLA、ROS 2 和研究脚本；
-- 三条策略推理展示：G1 快跑、Go2 快跑、Go2 上楼梯；
-- 可重新录制 demo 的脚本和 demo manifest；
-- ROS 2 interface package、MuJoCo bridge、robot adapter skeleton；
-- VLA dry-run provider，把自然语言任务转成结构化命令；
-- 最小测试集，防止注册表、配置和接口在公开迭代中坏掉。
-
-## 这个仓库刻意不做什么
-
-- 不把私有 checkpoint、机器人 SDK、密钥、标定文件放进 Git。
-- 不默认开放真实硬件控制。
-- 不把 Windows-first 说成唯一正确路线。
-- 不承诺所有研究 demo 都能在低配电脑上重新训练。
-
-这些边界很重要。它让项目可以公开、可以教学、可以被复现，也保留未来接真机时必须有的
-安全余地。
-
-## 判断项目是否有意义的标准
-
-一个新用户打开仓库后，应该能在很短时间内做到：
-
-1. 看懂这个项目解决什么问题。
-2. 打开 dashboard，知道有哪些功能。
-3. 运行一个最小仿真，确认环境可用。
-4. 看到已训练策略的效果，而不是只看到论文式描述。
-5. 明白 VLA 和真机接口为什么先 dry-run。
-6. 知道自己能贡献文档、配置、环境适配、仿真任务还是硬件 adapter。
-
-如果这些事情成立，WinROS 的开源就不只是“把代码放上去”，而是在给机器人学习新手一条
-更平缓的入口。
+- Windows setup reports and dependency fixes.
+- Dashboard profiles and UI improvements.
+- Small simulation tasks and reproducible RL baselines.
+- VLA providers that emit structured dry-run commands.
+- ROS 2 message, service, action, and bridge improvements.
+- Hardware adapters that remain dry-run by default and document safety limits.
